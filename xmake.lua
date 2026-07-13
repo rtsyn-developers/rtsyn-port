@@ -1,6 +1,8 @@
 local project_name = "rtsyn-port"
 local project_xmake_repo = "rtsyn-xmake-repo"
 
+set_license("GPL-3.0-or-later")
+
 add_rules("mode.debug", "mode.release")
 add_rules("plugin.compile_commands.autoupdate")
 set_defaultmode("release")
@@ -37,7 +39,9 @@ add_includedirs("include", { public = true })
 add_includedirs("src")
 add_headerfiles("include/(rtsyn/**.h)")
 
-local rtsyn_modules = {}
+local rtsyn_modules = {
+	{ path = "port", name = "port" },
+}
 
 if has_config("tests") then
 	for _, rtsyn_module in ipairs(rtsyn_modules) do
